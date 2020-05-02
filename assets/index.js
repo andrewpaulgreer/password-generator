@@ -78,7 +78,7 @@ var characters = [
     "Y",
     "Z",
   ];
-  var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  var numbers = [0,1,2,3,4,5,6,7,8,9];
 
   var choices = [];
 //code for the pass generator
@@ -95,6 +95,7 @@ function generatePassword() {
       );
       var passInput = parseInt(prompt("How many characters might you want in your password ?"));
 
+      //while loop to assure that criteria is met, (this loop broke my browser several times - would take suggestions on better ways to test while loops)
     while(passInput < 8 || passInput > 128 || passInput === NaN){
         if (passInput < 8 ) {
             alert(
@@ -113,7 +114,7 @@ function generatePassword() {
         }
   
 
-  // configured on the fly
+    // configured on the fly, pushing those criteria into the empty string.
 
 
   if (passInputChar) {
@@ -130,16 +131,14 @@ function generatePassword() {
   if (passInputCapLetters) {
     choices.push(upperLetters);
   }
+// giving my password ann empty string, and looping to get the random number
 
-
- var password = "";
- var confirmPass = "";
+ var password = ""; //empty string for password (same one as in the dom elemt)
+ var confirmPass = ""; //empty string for a the confirmation of the assignments being used
   for (var i = 0; i < passInput; i++) {
     var choice = choices[Math.floor(Math.random() * choices.length)];
     var randomChar = choice[Math.floor(Math.random() * choice.length)];
-    // if (passInputChar && passInputNum && passInputLetters && passInputCapLetters){
-
-    // }
+   
 
     password += randomChar;
     confirmPass += randomChar;
@@ -149,31 +148,33 @@ function generatePassword() {
 // do a split on the password, with a minimum of 4 characters, for the given criteria: numbers, characters, uppercase and lowercase
 // slice method in JS, depending on the number for input, slice out first 3 letters of input. 
 
-var confirmCriteria = password.slice(0,3);
-var pass = confirmPass.slice(3,password.length); 
-
+var confirmCriteria = password.slice(0,3); //this will refer tothe index of which would need to be sliced, 0,3 since there are 4 characters
+var pass = confirmPass.slice(3,password.length);  //
+var empty = "";
+//for loop to confirm criteria to be included
 for (var i = 0; i < confirmCriteria.length; i++) {
     if (passInputLetters) {
-        confirmCriteria[0] = lowerLetters[Math.floor(Math.random() * lowerLetters.length)]
+        empty+= lowerLetters[Math.floor(Math.random() * lowerLetters.length)]
         console.log(confirmCriteria[0]);
     }
     if (passInputCapLetters) {
-        confirmCriteria[1] = upperLetters[Math.floor(Math.random() * upperLetters.length)]
+        empty+= upperLetters[Math.floor(Math.random() * upperLetters.length)]
         console.log(confirmCriteria[1]);
     }
     if (passInputNum) {
-        confirmCriteria[2] = numbers[Math.floor(Math.random() * numbers.length)]
+        empty+= numbers[Math.floor(Math.random() * numbers.length)]
         console.log(confirmCriteria[2]);
     }
     if (passInputChar) {
-        confirmCriteria[3] = characters[Math.floor(Math.random() * characters.length)]
+        empty+= characters[Math.floor(Math.random() * characters.length)]
         console.log(confirmCriteria[3]);
     }
 }
-console.log(confirmCriteria+pass);
+//assigning newPassword to the empty string above +  password
+var newPassword = empty+pass;
+console.log(newPassword.slice(0,passInput, "fdsfsfd"))
 
-console.log(password);
-  return password;
+  return newPassword.slice(0,passInput);
 
 }
 
