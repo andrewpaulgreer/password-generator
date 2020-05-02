@@ -12,9 +12,9 @@ var passInputCapLetters = confirm(
 );
 var passInput = parseInt(prompt("How many characters might you want in your password ?"));
 
-// while (typeof(passInput) === ()) {
+// I researched how to make sure that the correct criteria is entered in the input is not met, and found this while loop method
+// after several attempts and making my browser crash several times, I think i have gotten something that works. 
 
-// }
 
 
 while(passInput < 8 || passInput > 128 || passInput === NaN){
