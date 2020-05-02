@@ -78,7 +78,7 @@ var characters = [
     "Y",
     "Z",
   ];
-  var numbers = [0,1,2,3,4,5,6,7,8,9];
+  var numbers = ["0","1","2","3","4","5","6","7","8","9"];
 
   var choices = [];
 //code for the pass generator
@@ -93,7 +93,7 @@ function generatePassword() {
       var passInputCapLetters = confirm(
         "would you like capital letters in your password?"
       );
-      var passInput = parseInt(prompt("How many characters might you want in your password ?"));
+      var passInput = parseInt(prompt("How many characters might you want in your password ?(Please refresh browser after each attempt)"));
 
       //while loop to assure that criteria is met, (this loop broke my browser several times - would take suggestions on better ways to test while loops)
     while(passInput < 8 || passInput > 128 || passInput === NaN){
@@ -101,15 +101,15 @@ function generatePassword() {
             alert(
               'your password must have at least 8 characters, please refresh the page and enter a length between "8" and "128"'
             );
-            passInput = parseInt(prompt("How many characters might you want in your password ?"));
+            passInput = parseInt(prompt("How many characters might you want in your password? (please refresh browser after every attempt)"));
           } else if (passInput > 128) {
             alert(
               'you must have less than 128 characters please refresh the page and enter a length between "8" and "128"'
             );
-            passInput = parseInt(prompt("How many characters might you want in your password ?"));
+            passInput = parseInt(prompt("How many characters might you want in your password? (please refresh browser after each attempt)"));
           } else if  (passInput === isNaN){
             alert("your input must be a number, please refresh");
-            passInput = parseInt(prompt("How many characters might you want in your password ?"));
+            passInput = parseInt(prompt("How many characters might you want in your password (please refresh browser after each attempt)?"));
           }
         }
   
@@ -175,7 +175,7 @@ var newPassword = empty+pass;
 console.log(newPassword.slice(0,passInput, "fdsfsfd"))
 
   return newPassword.slice(0,passInput);
-
+  
 }
 
 
